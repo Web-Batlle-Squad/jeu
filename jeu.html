@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="jeu.css">
+    <meta charset="utf-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale = 1.0">
+    <title>Hey</title>
+    <meta name="description"
+        content="résumé de la page pour mon ami google">
+</head>
+<body id="oo">
+
+    <script type="text/javascript">
+
+        function generate_table() {
+
+  // get the reference for the body
+  var body = document.getElementsByTagName("body")[0];
+
+  // creates a <table> element and a <tbody> element
+  var tbl = document.createElement("table");
+  tbl.id = "table";
+  var tblBody = document.createElement("tbody");
+
+  // creating all cells
+  for (var i = 0; i < 20; i++) {
+    // creates a table row
+    var row = document.createElement("tr");
+
+    for (var j = 0; j < 20; j++) {
+      // Create a <td> element and a text node, make the text
+      // node the contents of the <td>, and put the <td> at
+      // the end of the table row
+      var cell = document.createElement("td");
+
+      if(j%2 == 0){
+          if(i%2 != 0){
+              cell.className = "col1";
+          }
+      } 
+
+      if(i%2 == 0){
+          if(j%2 != 0){
+              cell.className = "col1";
+          }
+      }
+
+      if(j%2 != 0){
+          if(i%2 != 0){
+              cell.className = "col2";
+          }
+      }
+
+      if(i%2 == 0){
+          if(j%2 == 0){
+              cell.className = "col2";
+          }
+      }
+
+      //var cellText = document.createTextNode("cell in row "+i+", column "+j);
+      //cell.appendChild(cellText);
+      row.appendChild(cell);
+    }
+
+    // add the row to the end of the table body
+    tblBody.appendChild(row);
+  }
+
+  // put the <tbody> in the <table>
+  tbl.appendChild(tblBody);
+  // appends <table> into <body>
+  body.appendChild(tbl);
+  // sets the border attribute of tbl to 2;
+  tbl.setAttribute("border", "2");
+}
+
+generate_table();
+
+var arrayLignes = document.getElementById("table").rows;
+var longueur = arrayLignes.length;
+
+arrayColonne = arrayLignes[1].cells;
+//arrayColonne[2].innerHTML += document.getElementById("table").value = 3;
+
+    </script>
+
+<button title="btn1" id="btn1" onclick="ajout()">Clique</button>
+
+<div id="aze"></div>
+
+<script>
+
+    var tabImg = [];
+    var img = new Image(64, 64);
+    img.src = ('logo.jpg');
+    var div = document.getElementById("aze");
+    //div.appendChild(img);
+   // tabImg.push(img);
+
+
+    function ajout(){
+        var arrayLignes = document.getElementById("table").rows;
+        var arrayColonne = arrayLignes[1].cells;
+        arrayColonne[2].innerHTML = document.getElementById("table").value = 3; 
+    }
+
+    function imgTab(){
+        var lignes = document.getElementById("table").rows;
+        var longeur = lignes.length;
+        
+        for(var i=0;i<longeur;i++){
+            var colonne = lignes[i].cells;
+            var largeur = colonne.length;
+
+            for(var j=0;j<largeur;j++){
+                colonne[j].innerHTML = document.getElementById("table").value = '<img src="imgTrans.png" width="32" height="32" />';
+            }
+        }
+    }
+
+    imgTab();
+
+</script>
+
+
+</body>
+</html>
