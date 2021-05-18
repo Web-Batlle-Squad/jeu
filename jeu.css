@@ -1,34 +1,33 @@
 body{
-    margin: 20px;
+  margin: 20px;
 }
 
-table {
-    table-layout: fixed;
-    border-collapse: collapse;
-    border: 1px solid;
-    font-size: 0.9rem;
-    
-  }
+table{
+  table-layout: fixed;
+  border-collapse: collapse;
+  border: 1px solid;
+  font-size: 0.9rem;
+}
 
-td, th {
-    border: 1px solid;
-    padding: 10px 20px;
+td, th{
+  border: 1px solid;
+  padding: 10px 20px;
 }
   
-td {
-    text-align: center;
-    padding: 12px;
-  }
+td{
+  text-align: center;
+  padding: 12px;
+}
   
-  caption {
-    padding: 10px;
-  }
+caption{
+  padding: 10px;
+}
 
 .col1{
-    background-color: rgb(0,125,40);
+  background-color: rgb(0,125,40);
 }
 
 .col2{
-    background-color: darkolivegreen;
+  background-color: darkolivegreen;
 }
 
