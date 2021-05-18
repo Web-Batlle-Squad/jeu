@@ -4,127 +4,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale = 1.0">
-    <meta name="description" content="résumé de la page pour mon ami google">
 
     <link rel="stylesheet" href="jeu.css">
 
     <title>Web Battle Squad - Play</title>
 </head>
 
-<body id="oo">
+<body>
+    <script>
+    // Constants
+    const X = 50;
+    const Y = 20;
 
-    <script type="text/javascript">
+    // Board display
+    var body = document.getElementsByTagName("body")[0];
+    var tbl = document.createElement("table");
+    tbl.id = "table";
+    var tblBody = document.createElement("tbody");
 
-        function generate_table() {
+    for (var i = 0; i < Y; i++) {
+        var row = document.createElement("tr");
 
-  // get the reference for the body
-  var body = document.getElementsByTagName("body")[0];
+        for (var j = 0; j < X; j++) {
+            var cell = document.createElement("td");
 
-  // creates a <table> element and a <tbody> element
-  var tbl = document.createElement("table");
-  tbl.id = "table";
-  var tblBody = document.createElement("tbody");
+            if(j%2 == 0){ if(i%2 != 0){cell.className = "cell1";} } 
+            if(i%2 == 0){ if(j%2 != 0){cell.className = "cell1";} }
+            if(j%2 != 0){ if(i%2 != 0){cell.className = "cell2";} }
+            if(i%2 == 0){ if(j%2 == 0){cell.className = "cell2";} }
 
-  // creating all cells
-  for (var i = 0; i < 20; i++) {
-    // creates a table row
-    var row = document.createElement("tr");
-
-    for (var j = 0; j < 20; j++) {
-      // Create a <td> element and a text node, make the text
-      // node the contents of the <td>, and put the <td> at
-      // the end of the table row
-      var cell = document.createElement("td");
-
-      if(j%2 == 0){
-          if(i%2 != 0){
-              cell.className = "col1";
-          }
-      } 
-
-      if(i%2 == 0){
-          if(j%2 != 0){
-              cell.className = "col1";
-          }
-      }
-
-      if(j%2 != 0){
-          if(i%2 != 0){
-              cell.className = "col2";
-          }
-      }
-
-      if(i%2 == 0){
-          if(j%2 == 0){
-              cell.className = "col2";
-          }
-      }
-
-      //var cellText = document.createTextNode("cell in row "+i+", column "+j);
-      //cell.appendChild(cellText);
-      row.appendChild(cell);
+            row.appendChild(cell);
+        }
+        tblBody.appendChild(row);
     }
+    tbl.appendChild(tblBody);
+    body.appendChild(tbl);
 
-    // add the row to the end of the table body
-    tblBody.appendChild(row);
-  }
+    // Include of transparent images in the array
+    var rows = document.getElementById("table").rows;
+    for(var i = 0; i < Y; i++){
+        var col = rows[i].cells;
 
-  // put the <tbody> in the <table>
-  tbl.appendChild(tblBody);
-  // appends <table> into <body>
-  body.appendChild(tbl);
-  // sets the border attribute of tbl to 2;
-  tbl.setAttribute("border", "2");
-}
-
-generate_table();
-
-var arrayLignes = document.getElementById("table").rows;
-var longueur = arrayLignes.length;
-
-arrayColonne = arrayLignes[1].cells;
-//arrayColonne[2].innerHTML += document.getElementById("table").value = 3;
-
-    </script>
-
-<button title="btn1" id="btn1" onclick="ajout()">Clique</button>
-
-<div id="aze"></div>
-
-<script>
-
-    var tabImg = [];
-    var img = new Image(64, 64);
-    img.src = ('logo.jpg');
-    var div = document.getElementById("aze");
-    //div.appendChild(img);
-   // tabImg.push(img);
-
-
-    function ajout(){
-        var arrayLignes = document.getElementById("table").rows;
-        var arrayColonne = arrayLignes[1].cells;
-        arrayColonne[2].innerHTML = document.getElementById("table").value = 3; 
-    }
-
-    function imgTab(){
-        var lignes = document.getElementById("table").rows;
-        var longeur = lignes.length;
-        
-        for(var i=0;i<longeur;i++){
-            var colonne = lignes[i].cells;
-            var largeur = colonne.length;
-
-            for(var j=0;j<largeur;j++){
-                colonne[j].innerHTML = document.getElementById("table").value = '<img src="imgTrans.png" width="32" height="32" />';
-            }
+        for(var j = 0; j < X; j++){
+            col[j].innerHTML = document.getElementById("table").value = '<img alt="transparent image" src="transImg.png"/>';
         }
     }
 
-    imgTab();
+    // Table with characters position
+    var CharactersPosition = new Array(X*Y);
+    for (var i = 0; i < X*Y; i++){
+        CharactersPosition[i] = 0;
+    }
 
-</script>
+    // Class for characters
+    class Characters{
+        constructor(x, y){
+            this.x = x-1;
+            this.y = y-1;
+        }
 
+        addToTab(x, y){
+            CharactersPosition[(y*Y) + x] = 1;
+        }
 
+        display(x, y){
+            var lignes = document.getElementById("table").rows;
+            var colonne = lignes[y].cells;
+            colonne[x].innerHTML = document.getElementById("table").value = '<img alt="pawn" src="pawn.png"/>';
+        }
+    }
+
+    var char = new Characters(1, 1);
+    char.addToTab();
+    char.display(char.x, char.y);
+    </script>
+    
 </body>
 </html>
