@@ -11,6 +11,8 @@
 </head>
 
 <body>
+    <a href="index.html"><h1>Web Battle Squad</h1></a>
+
     <?php
     // Report php errors
     error_reporting(E_ALL);
@@ -58,7 +60,7 @@
             ?>
         </table>
 
-        <input type="submit">
+        <input type="submit" class="button">
     </form>
 </body>
 </html>

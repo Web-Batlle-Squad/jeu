@@ -6,3 +6,26 @@ table{
 td{
     border: solid black 1px;
 }
+
+h1{
+    font-size: 4rem;
+    text-align: center;
+    font-family: 'Texturina', serif;
+    color: rgb(129, 129, 129);
+    margin: 20px;
+}
+  
+a{
+    text-decoration: none;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.button{
+    width: 200px;
+    margin-top: 40px;
+}
