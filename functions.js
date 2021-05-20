@@ -38,11 +38,18 @@ class Characters{
 // Functions
 
 // Selection
+var selecNbre = 0;
 function selectUnit(unitName){
+    if (selecNbre > 0){
+        document.getElementById("green").classList.remove("selec");
+    }
+
     selectedUnit = unitName;
     var rows = document.getElementById("table").rows;
     var col = rows[unitName.y].cells;
-    col[unitName.x].className = "selec";
+    col[unitName.x].id = "green";
+    document.getElementById("green").classList.add("selec");
+    selecNbre++;
 }
 
 // Movements
@@ -55,10 +62,22 @@ function movements(){
         document.getElementById("down").removeAttribute("style");
         document.getElementById("left").removeAttribute("style");
         document.getElementById("right").removeAttribute("style");
+        document.getElementById("cancel").removeAttribute("style");
     }
     else{
         alert("No unit selected !");
     }
+}
+
+function cancelMovements(){
+    document.getElementById("up").setAttribute("style","display: none");
+    document.getElementById("down").setAttribute("style","display: none");
+    document.getElementById("left").setAttribute("style","display: none");
+    document.getElementById("right").setAttribute("style","display: none");
+    document.getElementById("cancel").setAttribute("style","display: none");
+
+    document.getElementById("attacks").removeAttribute("style");
+    document.getElementById("movements").removeAttribute("style");
 }
 
 function right(pers){
@@ -66,9 +85,15 @@ function right(pers){
         CharactersPosition[(pers.y*X) + pers.x + 1] = CharactersPosition[(pers.y*X) + pers.x];
         CharactersPosition[(pers.y*X) + pers.x] = 0;
 
+        document.getElementById("green").classList.remove("selec");
+        document.getElementById("green").removeAttribute("id");
+
         pers.erase();
         pers.x+=1;
         pers.display(pers);
+        var coord = document.getElementById("table").rows[pers.y].cells[pers.x];
+        coord.classList.add("selec");
+        coord.id = "green";
     }
 }
 
@@ -77,9 +102,16 @@ function left(pers){
         CharactersPosition[(pers.y*X) + pers.x - 1] = CharactersPosition[(pers.y*X) + pers.x];
         CharactersPosition[(pers.y*X) + pers.x] = 0;
 
+        document.getElementById("green").classList.remove("selec");
+        document.getElementById("green").removeAttribute("id");
+
         pers.erase();
         pers.x-=1;
         pers.display(pers);
+
+        var coord = document.getElementById("table").rows[pers.y].cells[pers.x];
+        coord.classList.add("selec");
+        coord.id = "green";
     }
 } 
 
@@ -88,9 +120,16 @@ function up(pers){
         CharactersPosition[(pers.y*X) + pers.x - X] = CharactersPosition[(pers.y*X) + pers.x];
         CharactersPosition[(pers.y*X) + pers.x] = 0;
         
+        document.getElementById("green").classList.remove("selec");
+        document.getElementById("green").removeAttribute("id");
+
         pers.erase();
         pers.y-=1;
         pers.display(pers);
+
+        var coord = document.getElementById("table").rows[pers.y].cells[pers.x];
+        coord.classList.add("selec");
+        coord.id = "green";
     }
 } 
 
@@ -99,9 +138,16 @@ function down(pers){
         CharactersPosition[(pers.y*X) + pers.x + X] = CharactersPosition[(pers.y*X) + pers.x];
         CharactersPosition[(pers.y*X) + pers.x] = 0;
         
+        document.getElementById("green").classList.remove("selec");
+        document.getElementById("green").removeAttribute("id");
+
         pers.erase();
         pers.y+=1;
         pers.display(pers);
+
+        var coord = document.getElementById("table").rows[pers.y].cells[pers.x];
+        coord.classList.add("selec");
+        coord.id = "green";
     }
 }
 
