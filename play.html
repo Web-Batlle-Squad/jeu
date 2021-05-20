@@ -7,6 +7,7 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Texturina&display=swap" rel="stylesheet">
 
+    <script type="text/javascript" src="functions.js"></script>
     <link rel="stylesheet" href="styles/play.css">
 
     <title>Web Battle Squad - Play</title>
@@ -19,6 +20,15 @@
     // Constants
     const X = 30;
     const Y = 20;
+
+    // Global variables
+    selectedUnit = false;
+
+    // Table with characters position
+    var CharactersPosition = new Array(X*Y);
+    for (var i = 0; i < X*Y; i++){
+        CharactersPosition[i] = 0;
+    }
 
     // Board display
     var body = document.getElementsByTagName("body")[0];
@@ -54,42 +64,20 @@
         }
     }
 
-    // Table with characters position
-    var CharactersPosition = new Array(X*Y);
-    for (var i = 0; i < X*Y; i++){
-        CharactersPosition[i] = 0;
-    }
-
-    // Class for characters
-    class Characters{
-        constructor(x, y){
-            this.x = x-1;
-            this.y = y-1;
-        }
-
-        addToTab(x, y){
-            CharactersPosition[(y*Y) + x] = 1;
-        }
-
-        display(x, y){
-            var lignes = document.getElementById("table").rows;
-            var colonne = lignes[y].cells;
-            colonne[x].innerHTML = document.getElementById("table").value = '<img alt="pawn" src="images/pawn.png"/>';
-        }
-
-        positionX(){
-            return this.x+1;
-        }
-
-        positionY(){
-            return this.y+1;
-        }
-    }
-
-    var char = new Characters(1, 1);
+    var char = new Characters(7,5, "char");
     char.addToTab();
     char.display(char.x, char.y);
     </script>
+
+    <button id="movements" onclick="movements()">Move</button>
+    <button id="attacks" onclick="">Attack</button>
+    <br>
+    <button id="up" onclick="up(persoTemp)" style="display: none;">Up</button>
+    <br>
+    <button id="left" onclick="left(persoTemp)" style="display: none;">Left</button>
+    <button id="right" onclick="right(persoTemp)" style="display: none;">Right</button>
+    <br>
+    <button id="down" onclick="down(persoTemp)" style="display: none;">Down</button>
     
 </body>
 </html>
