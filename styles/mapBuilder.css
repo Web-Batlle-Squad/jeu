@@ -1,3 +1,7 @@
+html{
+    background-color: whitesmoke;
+}
+
 table{
     border: solid black 2px;
     border-collapse: collapse;
