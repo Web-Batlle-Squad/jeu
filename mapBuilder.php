@@ -32,12 +32,18 @@
         }
         
         // Writing in a file
+        /*
         if ($file = fopen('map.txt', 'w')){
             for ($i = 0; $i < ($X*$Y); $i++){
                 fwrite($file, $tab[$i]);
             }
             fclose($file);
         }
+        */
+        $file = fopen('map.json', 'w');
+        $json = json_encode(array_values($tab));
+        file_put_contents('map.json', $json, LOCK_EX);
+        fclose($file);
     }
     ?>
     
@@ -58,6 +64,7 @@
                         <option value="6">Enemy spearman</option>
                         <option value="7">Tree</option>
                         <option value="8">Fence</option>
+                        <option value="9">Finish</option>
                     </select></td>';
                 }
                 echo '</tr>';
@@ -65,7 +72,7 @@
             ?>
         </table>
 
-        <input type="submit" class="button">
+        <div class="button"><input type="submit"></div>
     </form>
 </body>
 </html>

@@ -2,11 +2,45 @@ html{
   background-color: whitesmoke;
 }
 
+body{
+  margin: 0px;
+}
+
+main{
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+aside{
+  width: 20%;
+  padding-top: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+button{
+  margin: 50px 0px;
+  font-size: 1.5rem;
+  font-family: 'Texturina', serif;
+  width: 180px;
+}
+
 table{
   border-collapse: collapse;
   border: 2px solid black;
   font-size: 1rem;
   margin: 40px auto 0px auto;
+}
+
+td{
+  border: 1px solid;
+  text-align: center;
+}
+
+img{
+  width: 30px;
+  height: 30px;
 }
 
 h1{
@@ -21,14 +55,20 @@ a{
   text-decoration: none;
 }
 
-td{
-  border: 1px solid;
-  text-align: center;
+.row{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
-img{
-  width: 30px;
-  height: 30px;
+.row button{
+  height: 60px;
+  width: 100px;
+}
+
+.col{
+  display: flex;
+  flex-direction: column;
 }
 
 .cell1{
@@ -37,4 +77,8 @@ img{
 
 .cell2{
   background-color: rgb(155, 149, 149);
+}
+
+.selec{
+  background-color: darkseagreen;
 }
