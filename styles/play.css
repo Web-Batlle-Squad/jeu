@@ -85,6 +85,14 @@ p{
   background-color: rgb(155, 149, 149);
 }
 
-.selec{
-  background-color: darkseagreen;
+.selected{
+  background-color: rgb(143, 20, 20);
+}
+
+.finish{
+  background-color: green;
+}
+
+.bite{
+  background-color:hotpink;
 }

@@ -3,53 +3,34 @@
 // Class for characters
 class Characters{
     constructor(x, y, name, unit){
-        this.x = x-1;
-        this.y = y-1;
+        this.x = x;
+        this.y = y;
         this.name = name;
         this.unit = unit;
         this.health = 100;
     }
 
-    addToTab(){
-        CharactersPosition[(this.y*X) + this.x] = this.unit;
-    }
-
     display(){
-        var lignes = document.getElementById("table").rows;
-        var colonne = lignes[this.y].cells;
-        colonne[this.x].innerHTML = document.getElementById("table").value = '<img alt="pawn" src="images/pawn.png" onclick="selectUnit('+this.name+')"/>';
+        document.getElementById("table").rows[this.y].cells[this.x].innerHTML = '<img alt="pawn" src="images/pawn.png" onclick="selectUnit('+this.name+')"/>';
     }
 
     erase(){
-        var lignes = document.getElementById("table").rows;
-        var colonne = lignes[this.y].cells;
-        colonne[this.x].innerHTML = document.getElementById("table").value = '<img alt="transparent image" src="images/transImg.png"/>';
-    }
-
-    positionX(){
-        return this.x+1;
-    }
-
-    positionY(){
-        return this.y+1;
+        document.getElementById("table").rows[this.y].cells[this.x].innerHTML = '<img alt="transparent image" src="images/transImg.png"/>';
     }
 }
 
 // Functions
 
 // Selection
-var selecNbre = 0;
+selectionNber = 0;
 function selectUnit(unitName){
-    if (selecNbre > 0){
-        document.getElementById("green").classList.remove("selec");
+    if (selectionNber > 0){
+        document.getElementById("table").rows[selectedUnit.y].cells[selectedUnit.x].classList.remove("selected");
     }
 
     selectedUnit = unitName;
-    var rows = document.getElementById("table").rows;
-    var col = rows[unitName.y].cells;
-    col[unitName.x].id = "green";
-    document.getElementById("green").classList.add("selec");
-    selecNbre++;
+    selectionNber++;
+    document.getElementById("table").rows[unitName.y].cells[unitName.x].classList.add("selected");
 }
 
 // Movements
@@ -85,18 +66,15 @@ function right(pers){
         CharactersPosition[(pers.y*X) + pers.x + 1] = CharactersPosition[(pers.y*X) + pers.x];
         CharactersPosition[(pers.y*X) + pers.x] = 0;
 
-        document.getElementById("green").classList.remove("selec");
-        document.getElementById("green").removeAttribute("id");
-
+        document.getElementById("table").rows[pers.y].cells[pers.x].classList.remove("selected");
         pers.erase();
+
         pers.x+=1;
+        document.getElementById("table").rows[pers.y].cells[pers.x].classList.add("selected");
         pers.display(pers);
-        var coord = document.getElementById("table").rows[pers.y].cells[pers.x];
-        coord.classList.add("selec");
-        coord.id = "green";
     }
-    else if(CharactersPosition[(pers.y*X) + pers.x + 1] == 9){
-        play = false;
+    else if (CharactersPosition[(pers.y*X) + pers.x + 1] == 9){
+        winMovements(pers.x, pers.y);
     }
 }
 
@@ -105,19 +83,15 @@ function left(pers){
         CharactersPosition[(pers.y*X) + pers.x - 1] = CharactersPosition[(pers.y*X) + pers.x];
         CharactersPosition[(pers.y*X) + pers.x] = 0;
 
-        document.getElementById("green").classList.remove("selec");
-        document.getElementById("green").removeAttribute("id");
-
+        document.getElementById("table").rows[pers.y].cells[pers.x].classList.remove("selected");
         pers.erase();
-        pers.x-=1;
-        pers.display(pers);
 
-        var coord = document.getElementById("table").rows[pers.y].cells[pers.x];
-        coord.classList.add("selec");
-        coord.id = "green";
+        pers.x-=1;
+        document.getElementById("table").rows[pers.y].cells[pers.x].classList.add("selected");
+        pers.display(pers);
     }
-    else if(CharactersPosition[(pers.y*X) + pers.x - 1] == 9){
-        play = false;
+    else if (CharactersPosition[(pers.y*X) + pers.x - 1] == 9){
+        winMovements(pers.x, pers.y);
     }
 } 
 
@@ -125,20 +99,16 @@ function up(pers){
     if (pers.y > 0 && CharactersPosition[(pers.y*X) + pers.x - X] == 0){
         CharactersPosition[(pers.y*X) + pers.x - X] = CharactersPosition[(pers.y*X) + pers.x];
         CharactersPosition[(pers.y*X) + pers.x] = 0;
-        
-        document.getElementById("green").classList.remove("selec");
-        document.getElementById("green").removeAttribute("id");
 
+        document.getElementById("table").rows[pers.y].cells[pers.x].classList.remove("selected");
         pers.erase();
-        pers.y-=1;
-        pers.display(pers);
 
-        var coord = document.getElementById("table").rows[pers.y].cells[pers.x];
-        coord.classList.add("selec");
-        coord.id = "green";
+        pers.y-=1;
+        document.getElementById("table").rows[pers.y].cells[pers.x].classList.add("selected");
+        pers.display(pers);
     }
-    else if(CharactersPosition[(pers.y*X) + pers.x - X] == 9){
-        play = false;
+    else if (CharactersPosition[(pers.y*X) + pers.x - X] == 9){
+        winMovements(pers.x, pers.y);
     }
 } 
 
@@ -146,24 +116,25 @@ function down(pers){
     if (pers.y < (Y-1) && CharactersPosition[(pers.y*X) + pers.x + X] == 0){
         CharactersPosition[(pers.y*X) + pers.x + X] = CharactersPosition[(pers.y*X) + pers.x];
         CharactersPosition[(pers.y*X) + pers.x] = 0;
-        
-        document.getElementById("green").classList.remove("selec");
-        document.getElementById("green").removeAttribute("id");
 
+        document.getElementById("table").rows[pers.y].cells[pers.x].classList.remove("selected");
         pers.erase();
-        pers.y+=1;
-        pers.display(pers);
 
-        var coord = document.getElementById("table").rows[pers.y].cells[pers.x];
-        coord.classList.add("selec");
-        coord.id = "green";
+        pers.y+=1;
+        document.getElementById("table").rows[pers.y].cells[pers.x].classList.add("selected");
+        pers.display(pers);
     }
-    else if(CharactersPosition[(pers.y*X) + pers.x + X] == 9){
-        play = false;
+    else if (CharactersPosition[(pers.y*X) + pers.x + X] == 9){
+        winMovements(pers.x, pers.y);
     }
 }
 
-function win(){
+function winMovements(x, y){
+    play = false;
+    window.location.replace("index.html");
+}
+
+function winAttacks(){
     // s'il n'y a plus d'ennemis la partie s'arrête
 }
 
@@ -204,12 +175,9 @@ function createTable(){
     body.appendChild(tbl);
 
     // Include of transparent images in the array
-    var rows = document.getElementById("table").rows;
-    for(var i = 0; i < Y; i++){
-        var col = rows[i].cells;
-
-        for(var j = 0; j < X; j++){
-            col[j].innerHTML = document.getElementById("table").value = '<img alt="transparent image" src="images/transImg.png"/>';
+    for (var i = 0; i < Y; i++){
+        for (var j = 0; j < X; j++){
+            document.getElementById("table").rows[i].cells[j].innerHTML = '<img alt="transparent image" src="images/transImg.png"/>';
         }
     }
 }
@@ -219,18 +187,57 @@ function eraseTable(){
     object.remove();
 }
 
-function drawLevel1(){
-    var rows = document.getElementById("table").rows;
-    var col1 = rows[2].cells;
-    var col2 = rows[3].cells;
-    var col3 = rows[4].cells;
-    col1[2].className = "selec";
-    col1[3].className = "selec";
-    col1[4].className = "selec";
-    col2[2].className = "selec";
-    col2[3].className = "selec";
-    col2[4].className = "selec";
-    col3[2].className = "selec";
-    col3[3].className = "selec";
-    col3[4].className = "selec";
+function drawLevel(){
+    var x = 0;
+    for (var i = 0; i < Y; i++){
+        for (var j = 0; j < X; j++){
+            switch (CharactersPosition[(i*X) + j]){
+                case '1':
+                    window['unit'+x] = new Characters(j, i, 'unit'+x, 1);
+                    window['unit'+x].display();
+                    x++;
+                    break;
+                case '2':
+                    window['unit'+x] = new Characters(j, i, 'unit'+x, 2);
+                    window['unit'+x].display();
+                    x++;
+                    break;
+                case '3':
+                    window['unit'+x] = new Characters(j, i, 'unit'+x, 3);
+                    window['unit'+x].display();
+                    x++;
+                    break;
+                case '4':
+                    window['enemyUnit'+x] = new Characters(j, i, 'enemyUnit'+x, 4);
+                    window['enemyUnit'+x].display();
+                    x++;
+                    break;
+                case '5':
+                    window['enemyUnit'+x] = new Characters(j, i, 'enemyUnit'+x, 5);
+                    window['enemyUnit'+x].display();
+                    x++;
+                    break;
+                case '6':
+                    window['enemyUnit'+x] = new Characters(j, i, 'enemyUnit'+x, 6);
+                    window['enemyUnit'+x].display();
+                    x++;
+                    break;
+                case '7':
+                    window['obstacle'+x] = new Characters(j, i, 'obstacle'+x, 7);
+                    window['obstacle'+x].display();
+                    x++;
+                    break;
+                case '8':
+                    window['obstacle'+x] = new Characters(j, i, 'obstacle'+x, 8);
+                    window['obstacle'+x].display();
+                    x++;
+                    break;
+                case '9':
+                    var rows = document.getElementById("table").rows;
+                    var col = rows[j].cells;
+                    col[i].className = "finish";
+                    break;
+            }
+        }
+    }
 }

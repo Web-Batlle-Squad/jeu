@@ -27,24 +27,14 @@
         var selectedUnit = false;
         var level = 1;
 
-        // Table with characters position
+        // Table with units position
         <?php $file = fopen('map.txt', 'r');?> // sécuriser l'ouverture du fichier
         CharactersPosition = [<?php echo fread($file, filesize('map.txt')); ?>];
         <?php fclose($file); ?>
 
         // Display
-        // if 
         createTable();
-        drawLevel1();
-
-        var char = new Characters(7, 5, 'char', 1);
-        char.display(); 
-
-        var en1 = new Characters(6, 5, 'en1', 2);
-        en1.display();
-
-        var en2 = new Characters(6, 3, 'en2', 2);
-        en2.display();
+        drawLevel();
         </script>
 
         <aside>
