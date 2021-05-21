@@ -24,26 +24,20 @@
 
     // Form reception
     if (isset($_POST['cell00'])){
-        $tab = array($X*$Y);
-        for ($i = 0; $i < $Y; $i++){
-            for ($j = 0; $j < $X; $j++){
-                $tab[($i*$X) + $j] = $_POST['cell'.$j.$i];
-            }
-        }
-        
         // Writing in a file
-        /*
         if ($file = fopen('map.txt', 'w')){
-            for ($i = 0; $i < ($X*$Y); $i++){
-                fwrite($file, $tab[$i]);
+            for ($i = 0; $i < $Y; $i++){
+                for ($j = 0; $j < $X; $j++){
+                    if ($i != ($Y-1) || $j != ($X-1)){
+                        fwrite($file, '\''.$_POST['cell'.$j.$i].'\',');
+                    }
+                    else{
+                        fwrite($file, '\''.$_POST['cell'.$j.$i].'\'');
+                    }
+                }
             }
             fclose($file);
         }
-        */
-        $file = fopen('map.json', 'w');
-        $json = json_encode(array_values($tab));
-        file_put_contents('map.json', $json, LOCK_EX);
-        fclose($file);
     }
     ?>
     

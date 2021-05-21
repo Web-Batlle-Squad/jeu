@@ -2,16 +2,16 @@
 
 // Class for characters
 class Characters{
-    constructor(x, y, name, classe, vie){
+    constructor(x, y, name, unit){
         this.x = x-1;
         this.y = y-1;
         this.name = name;
-        this.classe = 0;
-        this.vie = 100;
+        this.unit = unit;
+        this.health = 100;
     }
 
     addToTab(){
-        CharactersPosition[(this.y*X) + this.x] = 1; // changer la classe
+        CharactersPosition[(this.y*X) + this.x] = this.unit;
     }
 
     display(){
@@ -95,6 +95,9 @@ function right(pers){
         coord.classList.add("selec");
         coord.id = "green";
     }
+    else if(CharactersPosition[(pers.y*X) + pers.x + 1] == 9){
+        play = false;
+    }
 }
 
 function left(pers){
@@ -112,6 +115,9 @@ function left(pers){
         var coord = document.getElementById("table").rows[pers.y].cells[pers.x];
         coord.classList.add("selec");
         coord.id = "green";
+    }
+    else if(CharactersPosition[(pers.y*X) + pers.x - 1] == 9){
+        play = false;
     }
 } 
 
@@ -131,6 +137,9 @@ function up(pers){
         coord.classList.add("selec");
         coord.id = "green";
     }
+    else if(CharactersPosition[(pers.y*X) + pers.x - X] == 9){
+        play = false;
+    }
 } 
 
 function down(pers){
@@ -149,6 +158,13 @@ function down(pers){
         coord.classList.add("selec");
         coord.id = "green";
     }
+    else if(CharactersPosition[(pers.y*X) + pers.x + X] == 9){
+        play = false;
+    }
+}
+
+function win(){
+    // s'il n'y a plus d'ennemis la partie s'arrête
 }
 
 // Attacks
