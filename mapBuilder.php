@@ -56,7 +56,7 @@
                         <option value="4">Enemy knight</option>
                         <option value="5">Enemy archer</option>
                         <option value="6">Enemy spearman</option>
-                        <option value="7">Tree</option>
+                        <option value="7">Stone</option>
                         <option value="8">Fence</option>
                         <option value="9">Finish</option>
                     </select></td>';

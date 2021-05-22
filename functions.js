@@ -11,7 +11,32 @@ class Characters{
     }
 
     display(){
-        document.getElementById("table").rows[this.y].cells[this.x].innerHTML = '<img alt="pawn" src="images/pawn.png" onclick="selectUnit('+this.name+')"/>';
+        switch (this.unit){
+            case 1:
+                document.getElementById("table").rows[this.y].cells[this.x].innerHTML = '<img alt="knight" src="images/knight.png" onclick="selectUnit('+this.name+')"/>';
+                break;
+            case 2:
+                document.getElementById("table").rows[this.y].cells[this.x].innerHTML = '<img alt="knight" src="images/knight.png" onclick="selectUnit('+this.name+')"/>';
+                break;
+            case 3:
+                document.getElementById("table").rows[this.y].cells[this.x].innerHTML = '<img alt="knight" src="images/knight.png" onclick="selectUnit('+this.name+')"/>';
+                break;
+            case 4:
+                document.getElementById("table").rows[this.y].cells[this.x].innerHTML = '<img alt="enemy" src="images/pawn.png"/>';
+                break;
+            case 5:
+                document.getElementById("table").rows[this.y].cells[this.x].innerHTML = '<img alt="enemy" src="images/pawn.png"/>';
+                break;
+            case 6:
+                document.getElementById("table").rows[this.y].cells[this.x].innerHTML = '<img alt="enemy" src="images/pawn.png"/>';
+                break;
+            case 7:
+                document.getElementById("table").rows[this.y].cells[this.x].innerHTML = '<img alt="stone" src="images/stone.png"/>';
+                break;
+            case 8:
+                document.getElementById("table").rows[this.y].cells[this.x].innerHTML = '<img alt="fence" src="images/fence.png"/>';
+                break;
+        }
     }
 
     erase(){
@@ -233,9 +258,7 @@ function drawLevel(){
                     x++;
                     break;
                 case '9':
-                    var rows = document.getElementById("table").rows;
-                    var col = rows[j].cells;
-                    col[i].className = "finish";
+                    document.getElementById("table").rows[i].cells[j].classList.add("finish");
                     break;
             }
         }
