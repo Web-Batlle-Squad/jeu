@@ -97,6 +97,10 @@ function right(pers){
         pers.x+=1;
         document.getElementById("table").rows[pers.y].cells[pers.x].classList.add("selected");
         pers.display(pers);
+
+        stamina -= 1;
+        document.getElementById('stamina').innerHTML = 'Stamina : <strong>' + stamina + '</strong>';
+        loseStamina();
     }
     else if (CharactersPosition[(pers.y*X) + pers.x + 1] == 9){
         winMovements(pers.x, pers.y);
@@ -114,6 +118,10 @@ function left(pers){
         pers.x-=1;
         document.getElementById("table").rows[pers.y].cells[pers.x].classList.add("selected");
         pers.display(pers);
+
+        stamina -= 1;
+        document.getElementById('stamina').innerHTML = 'Stamina : <strong>' + stamina + '</strong>';
+        loseStamina();
     }
     else if (CharactersPosition[(pers.y*X) + pers.x - 1] == 9){
         winMovements(pers.x, pers.y);
@@ -131,6 +139,10 @@ function up(pers){
         pers.y-=1;
         document.getElementById("table").rows[pers.y].cells[pers.x].classList.add("selected");
         pers.display(pers);
+
+        stamina -= 1;
+        document.getElementById('stamina').innerHTML = 'Stamina : <strong>' + stamina + '</strong>';
+        loseStamina();
     }
     else if (CharactersPosition[(pers.y*X) + pers.x - X] == 9){
         winMovements(pers.x, pers.y);
@@ -148,6 +160,10 @@ function down(pers){
         pers.y+=1;
         document.getElementById("table").rows[pers.y].cells[pers.x].classList.add("selected");
         pers.display(pers);
+
+        stamina -= 1;
+        document.getElementById('stamina').innerHTML = 'Stamina : <strong>' + stamina + '</strong>';
+        loseStamina();
     }
     else if (CharactersPosition[(pers.y*X) + pers.x + X] == 9){
         winMovements(pers.x, pers.y);
@@ -161,6 +177,13 @@ function winMovements(x, y){
 
 function winAttacks(){
     // s'il n'y a plus d'ennemis la partie s'arrête
+}
+
+function loseStamina(){
+    if (stamina <= 0){
+        play = false;
+        window.location.replace("index.html");
+    }
 }
 
 // Attacks

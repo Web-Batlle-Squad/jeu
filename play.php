@@ -25,6 +25,7 @@
         // Global variables
         var play = true;
         var selectedUnit = false;
+        var stamina = 100;
         var level = 1;
 
         // Table with units position
@@ -39,8 +40,10 @@
 
         <aside>
             <p id='level'></p>
+            <p id="stamina"></p>
             <script>
                 document.getElementById('level').innerHTML = 'Level : <strong>' + level + '</strong>';
+                document.getElementById('stamina').innerHTML = 'Stamina : <strong>' + stamina + '</strong>';
             </script>
 
             <button id="movements" onclick="movements()">Move</button>
