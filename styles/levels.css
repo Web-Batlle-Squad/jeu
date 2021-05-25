@@ -1,0 +1,94 @@
+html{
+    background-color: whitesmoke;
+}
+
+body{
+    width: 70%;
+    margin: auto;
+    background-color: rgba(0, 0, 0, 0.123);
+}
+
+header{
+    padding: 30px;
+}
+
+main{
+    padding: 60px;
+    border-top: solid black 2px;
+    font-family: 'Lato', sans-serif;
+}
+
+h1{
+    font-size: 4rem;
+    text-align: center;
+    font-family: 'Texturina', serif;
+    color: rgb(129, 129, 129);
+    margin: 45px;
+}
+
+h2{
+    text-align: center;
+    font-size: 2rem;
+    margin-top: 50px;
+}
+
+nav{
+    display: flex;
+    flex-direction: row;
+    font-family: 'Texturina', serif;
+    justify-content: space-around;
+    font-size: 2.2rem;
+    margin: auto;
+    max-width: 750px;
+}
+
+nav a{
+    border: solid black 2px;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+section{
+    display: flex;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+section li{
+    margin: 15px 0px;
+}
+
+footer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.103);
+}
+
+footer p{
+    font-size: 1.2rem;
+    margin: 0px;
+}
+
+.socialNetwork{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+i{
+    font-size: 40px;
+    margin: 0px 10px;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+p{
+    font-size: 1.7rem;
+    margin-left: 80px;
+}

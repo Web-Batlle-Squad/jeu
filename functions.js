@@ -16,7 +16,7 @@ class Characters{
                 document.getElementById("table").rows[this.y].cells[this.x].innerHTML = '<img alt="knight" src="images/knight.png" onclick="selectUnit('+this.name+')"/>';
                 break;
             case 2:
-                document.getElementById("table").rows[this.y].cells[this.x].innerHTML = '<img alt="knight" src="images/knight.png" onclick="selectUnit('+this.name+')"/>';
+                document.getElementById("table").rows[this.y].cells[this.x].innerHTML = '<img alt="archer" src="images/archer.png" onclick="selectUnit('+this.name+')"/>';
                 break;
             case 3:
                 document.getElementById("table").rows[this.y].cells[this.x].innerHTML = '<img alt="knight" src="images/knight.png" onclick="selectUnit('+this.name+')"/>';
@@ -100,7 +100,7 @@ function right(pers){
 
         stamina -= 1;
         document.getElementById('stamina').innerHTML = 'Stamina : <strong>' + stamina + '</strong>';
-        loseStamina();
+        //loseStamina(); disabled
     }
     else if (CharactersPosition[(pers.y*X) + pers.x + 1] == 9){
         winMovements(pers.x, pers.y);
@@ -121,7 +121,7 @@ function left(pers){
 
         stamina -= 1;
         document.getElementById('stamina').innerHTML = 'Stamina : <strong>' + stamina + '</strong>';
-        loseStamina();
+        //loseStamina(); disabled
     }
     else if (CharactersPosition[(pers.y*X) + pers.x - 1] == 9){
         winMovements(pers.x, pers.y);
@@ -142,7 +142,7 @@ function up(pers){
 
         stamina -= 1;
         document.getElementById('stamina').innerHTML = 'Stamina : <strong>' + stamina + '</strong>';
-        loseStamina();
+        //loseStamina(); disabled
     }
     else if (CharactersPosition[(pers.y*X) + pers.x - X] == 9){
         winMovements(pers.x, pers.y);
@@ -163,7 +163,7 @@ function down(pers){
 
         stamina -= 1;
         document.getElementById('stamina').innerHTML = 'Stamina : <strong>' + stamina + '</strong>';
-        loseStamina();
+        //loseStamina(); disabled
     }
     else if (CharactersPosition[(pers.y*X) + pers.x + X] == 9){
         winMovements(pers.x, pers.y);
@@ -215,6 +215,10 @@ function cancelAttacks(){
 }
 
 // Display
+function erase(x, y){
+    document.getElementById("table").rows[y].cells[x].innerHTML = '<img alt="transparent image" src="images/transImg.png"/>';
+}
+
 function createTable(){
     // Board display
     var body = document.getElementsByTagName("main")[0];

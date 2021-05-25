@@ -25,7 +25,7 @@
     // Form reception
     if (isset($_POST['cell00'])){
         // Writing in a file
-        if ($file = fopen('map.txt', 'w')){
+        if ($file = fopen('levels/customLevel.txt', 'w')){
             for ($i = 0; $i < $Y; $i++){
                 for ($j = 0; $j < $X; $j++){
                     if ($i != ($Y-1) || $j != ($X-1)){
