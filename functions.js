@@ -98,12 +98,12 @@ function right(pers){
         document.getElementById("table").rows[pers.y].cells[pers.x].classList.add("selected");
         pers.display(pers);
 
-        stamina -= 1;
+        stamina -= 2;
         document.getElementById('stamina').innerHTML = 'Stamina : <strong>' + stamina + '</strong>';
-        //loseStamina(); disabled
+        loseStamina();
     }
     else if (CharactersPosition[(pers.y*X) + pers.x + 1] == 9){
-        winMovements(pers.x, pers.y);
+        // winMovements(pers.x, pers.y); disable
     }
 }
 
@@ -119,12 +119,12 @@ function left(pers){
         document.getElementById("table").rows[pers.y].cells[pers.x].classList.add("selected");
         pers.display(pers);
 
-        stamina -= 1;
+        stamina -= 2;
         document.getElementById('stamina').innerHTML = 'Stamina : <strong>' + stamina + '</strong>';
-        //loseStamina(); disabled
+        loseStamina();
     }
     else if (CharactersPosition[(pers.y*X) + pers.x - 1] == 9){
-        winMovements(pers.x, pers.y);
+        // winMovements(pers.x, pers.y); disable
     }
 } 
 
@@ -140,12 +140,12 @@ function up(pers){
         document.getElementById("table").rows[pers.y].cells[pers.x].classList.add("selected");
         pers.display(pers);
 
-        stamina -= 1;
+        stamina -= 2;
         document.getElementById('stamina').innerHTML = 'Stamina : <strong>' + stamina + '</strong>';
-        //loseStamina(); disabled
+        loseStamina();
     }
     else if (CharactersPosition[(pers.y*X) + pers.x - X] == 9){
-        winMovements(pers.x, pers.y);
+        // winMovements(pers.x, pers.y); disable
     }
 } 
 
@@ -161,12 +161,12 @@ function down(pers){
         document.getElementById("table").rows[pers.y].cells[pers.x].classList.add("selected");
         pers.display(pers);
 
-        stamina -= 1;
+        stamina -= 2;
         document.getElementById('stamina').innerHTML = 'Stamina : <strong>' + stamina + '</strong>';
-        //loseStamina(); disabled
+        loseStamina();
     }
     else if (CharactersPosition[(pers.y*X) + pers.x + X] == 9){
-        winMovements(pers.x, pers.y);
+        // winMovements(pers.x, pers.y); disable
     }
 }
 

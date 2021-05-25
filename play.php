@@ -32,7 +32,7 @@
         // Global variables
         var play = true;
         var selectedUnit = false;
-        var stamina = 100;
+        var stamina = 30;
         var level = <?php echo $level;?>;
 
         // Table with units position
