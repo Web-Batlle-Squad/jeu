@@ -78,12 +78,12 @@
             <button id="cancel" onclick="cancelMovements()" style="display: none;">Cancel</button>
 
             <div class="row">
-                <button id="attackLeft" onclick="" style="display: none;">Left</button>
+                <button id="attackLeft" onclick="damage('left')" style="display: none;">Left</button>
                 <div class="col">
-                    <button id="attackUp" onclick="" style="display: none;">Up</button>
-                    <button id="attackDown" onclick="" style="display: none;">Down</button>
+                    <button id="attackUp" onclick="damage('up')" style="display: none;">Up</button>
+                    <button id="attackDown" onclick="damage('down')" style="display: none;">Down</button>
                 </div>
-                <button id="attackRight" onclick="" style="display: none;">Right</button>
+                <button id="attackRight" onclick="damage('right')" style="display: none;">Right</button>
             </div>
             <button id="attackCancel" onclick="cancelAttacks()" style="display: none;">Cancel</button>
         </aside>

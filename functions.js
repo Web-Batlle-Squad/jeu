@@ -214,6 +214,163 @@ function cancelAttacks(){
     document.getElementById("movements").removeAttribute("style");
 }
 
+function damage(direction) { //return les pv restant du defendeur
+
+    //console.log("Entrée damage");
+    //console.log(selectedUnit.name); 
+    
+
+    var defender = detectEnnemy(direction, selectedUnit.x, selectedUnit.y);
+    //console.log("Vie ="+defender.health);
+    //console.log("Classe ennemi = "+defender.unit);
+
+    if(defender != false){
+        var ratio;
+        if((selectedUnit.unit == 1 && defender.unit == 5) || (selectedUnit.unit == 2 && defender.unit == 6) || (selectedUnit.unit == 3 && defender.unit == 4)){
+            //console.log("Entrée premier if");
+            ratio = 2;
+        }else{
+            //console.log("Entrée deuxième if ");
+            ratio = 1;
+        }
+
+        var damageAttack = 50*ratio;
+        defender.health = defender.health - damageAttack;
+
+        //console.log("PV restant ="+defender.health);
+
+        if(defender.health < 0){    
+        defender.health = 0;
+        }
+    }
+    else {
+        alert("No enemie in this direction");
+    }
+
+    if(defender.health <= 0){ // /!\ defender bonne var ?
+        table[defender.x + (defender.y * X)] = 0; //dégage dans le tab de calc
+        let tmpx = defender.x;
+        let tmpy = defender.y;
+        erase(tmpx, tmpy); //dégage du tabl visuel
+    }
+}
+
+function detectEnnemy(direction, x, y){
+    //console.log("Entrée detectEnnemy");
+    switch(direction){
+        case "right":
+            console.log("Entrée right");
+            if(CharactersPosition[y*X+(x+1)] == 4 || CharactersPosition[y*X+(x+1)] == 5 || CharactersPosition[y*X+(x+1)] == 6){
+                //console.log("Entrée dans la condition");
+                var i = 0;
+                var continueBoucle = true;
+                while(i<arrayPerso.length && continueBoucle == true){
+                    
+                    if(arrayPerso[i].x == x+1){
+                        var j = 0;
+
+                        while(j<arrayPerso.length && continueBoucle == true){
+                            if(arrayPerso[i].y == y){
+                                return arrayPerso[i];   
+                                continueBoucle = false;
+                            }
+                            j++;
+                        }
+                    }
+                    i++;
+                }
+                
+            } else{
+                return false;
+            }
+            break;
+
+        case "up":
+            //console.log("Entrée up");
+            if(CharactersPosition[(y-1)*X+x] == 4 || CharactersPosition[(y-1)*X+x] == 5 || CharactersPosition[(y-1)*X+x] == 6){
+                var i = 0;
+                var continueBoucle = true;
+                while(i<arrayPerso.length && continueBoucle){
+                    if(arrayPerso[i].x == x){
+                        var j = 0;
+
+                        while(j<arrayPerso.length && continueBoucle){
+                            if(arrayPerso[i].y == y-1){
+                                return arrayPerso[i];   
+                                continueBoucle = false;
+                            }
+                            j++;
+                        }
+                    }
+                    i++;
+                }
+            } else{
+                return false;
+            }
+            break;
+
+        case "left":
+            //console.log("Entrée left");
+            if(CharactersPosition[y*X+(x-1)] == 4 || CharactersPosition[y*X+(x-1)] == 5 || CharactersPosition[y*X+(x-1)] == 6){
+                var i = 0;
+                var continueBoucle = true;
+                while(i<arrayPerso.length && continueBoucle){
+                    if(arrayPerso[i].x == x-1){
+                        var j = 0;
+
+                        while(j<arrayPerso.length && continueBoucle){
+                            if(arrayPerso[i].y == y){
+                                return arrayPerso[i];   
+                                continueBoucle = false;
+                            }
+                            j++;
+                        }
+                    }
+                    i++;
+                }
+            } else{
+                return false;
+            }
+            break;
+
+        case "down":
+            //console.log("Entrée down");
+            if(CharactersPosition[(y+1)*X+x] == 4 || CharactersPosition[(y+1)*X+x] == 5 || CharactersPosition[(y+1)*X+x] == 6){
+                var i = 0;
+                var continueBoucle = true;
+                while(i<arrayPerso.length && continueBoucle){
+                    if(arrayPerso[i].x == x){
+                        var j = 0;
+
+                        while(j<arrayPerso.length && continueBoucle){
+                            if(arrayPerso[i].y == y+1){
+                                return arrayPerso[i];   
+                                continueBoucle = false;
+                            }
+                            j++;
+                        }
+                    }
+                    i++;
+                }
+            }else{
+                return false;
+            }
+    }
+}
+
+function attaque(att, def, dir){
+    if(detectEnnemy(dir, att.x, att.y)==true){
+      def.health = damage(att, def);
+    }
+    if(def.health <= 0){ // /!\ defender bonne var ?
+      table[def.x + (def.y * X)] = 0; //dégage dans le tab de calc
+      let tmpx = def.x;
+      let tmpy = def.y;
+  erase(tmpx, tmpy); //dégage dans le tabl visuel
+  }
+  return def; 
+}
+
 // Display
 function erase(x, y){
     document.getElementById("table").rows[y].cells[x].innerHTML = '<img alt="transparent image" src="images/transImg.png"/>';
@@ -257,6 +414,7 @@ function eraseTable(){
     object.remove();
 }
 
+var arrayPerso = [];
 function drawLevel(){
     var x = 0;
     for (var i = 0; i < Y; i++){
@@ -264,41 +422,49 @@ function drawLevel(){
             switch (CharactersPosition[(i*X) + j]){
                 case '1':
                     window['unit'+x] = new Characters(j, i, 'unit'+x, 1);
+                    arrayPerso.push(window['unit'+x]);
                     window['unit'+x].display();
                     x++;
                     break;
                 case '2':
                     window['unit'+x] = new Characters(j, i, 'unit'+x, 2);
+                    arrayPerso.push(window['unit'+x]);
                     window['unit'+x].display();
                     x++;
                     break;
                 case '3':
                     window['unit'+x] = new Characters(j, i, 'unit'+x, 3);
+                    arrayPerso.push(window['unit'+x]);
                     window['unit'+x].display();
                     x++;
                     break;
                 case '4':
                     window['enemyUnit'+x] = new Characters(j, i, 'enemyUnit'+x, 4);
+                    arrayPerso.push(window['enemyUnit'+x]);
                     window['enemyUnit'+x].display();
                     x++;
                     break;
                 case '5':
                     window['enemyUnit'+x] = new Characters(j, i, 'enemyUnit'+x, 5);
+                    arrayPerso.push(window['enemyUnit'+x]);
                     window['enemyUnit'+x].display();
                     x++;
                     break;
                 case '6':
                     window['enemyUnit'+x] = new Characters(j, i, 'enemyUnit'+x, 6);
+                    arrayPerso.push(window['enemyUnit'+x]);
                     window['enemyUnit'+x].display();
                     x++;
                     break;
                 case '7':
                     window['obstacle'+x] = new Characters(j, i, 'obstacle'+x, 7);
+                    arrayPerso.push(window['obstacle'+x]);
                     window['obstacle'+x].display();
                     x++;
                     break;
                 case '8':
                     window['obstacle'+x] = new Characters(j, i, 'obstacle'+x, 8);
+                    arrayPerso.push(window['obstacle'+x]);
                     window['obstacle'+x].display();
                     x++;
                     break;
