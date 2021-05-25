@@ -25,7 +25,7 @@ class Characters{
                 document.getElementById("table").rows[this.y].cells[this.x].innerHTML = '<img alt="enemy" src="images/pawn.png"/>';
                 break;
             case 5:
-                document.getElementById("table").rows[this.y].cells[this.x].innerHTML = '<img alt="enemy" src="images/pawn.png"/>';
+                document.getElementById("table").rows[this.y].cells[this.x].innerHTML = '<img alt="enemyArcher" src="images/enemyArcher.png"/>';
                 break;
             case 6:
                 document.getElementById("table").rows[this.y].cells[this.x].innerHTML = '<img alt="enemy" src="images/pawn.png"/>';
