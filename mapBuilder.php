@@ -19,8 +19,8 @@
     ini_set("display_errors", 1);
 
     // Constants
-    $X = 30;
-    $Y = 20;
+    $X = 15;
+    $Y = 10;
 
     // Form reception
     if (isset($_POST['cell00'])){

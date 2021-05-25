@@ -19,8 +19,8 @@
     <main>
         <script>
         // Constants
-        const X = 30;
-        const Y = 20;
+        const X = 15;
+        const Y = 10;
 
         // Global variables
         var play = true;
