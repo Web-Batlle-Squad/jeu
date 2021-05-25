@@ -48,6 +48,7 @@
 
             <button id="movements" onclick="movements()">Move</button>
             <button id="attacks" onclick="attacks()">Attack</button>
+
             <div class="row">
                 <button id="left" onclick="left(selectedUnit)" style="display: none;">Left</button>
                 <div class="col">
@@ -57,6 +58,16 @@
                 <button id="right" onclick="right(selectedUnit)" style="display: none;">Right</button>
             </div>
             <button id="cancel" onclick="cancelMovements()" style="display: none;">Cancel</button>
+
+            <div class="row">
+                <button id="attackLeft" onclick="" style="display: none;">Left</button>
+                <div class="col">
+                    <button id="attackUp" onclick="" style="display: none;">Up</button>
+                    <button id="attackDown" onclick="" style="display: none;">Down</button>
+                </div>
+                <button id="attackRight" onclick="" style="display: none;">Right</button>
+            </div>
+            <button id="attackCancel" onclick="cancelAttacks()" style="display: none;">Cancel</button>
         </aside>
     </main>
 </body>

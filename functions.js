@@ -189,11 +189,29 @@ function loseStamina(){
 // Attacks
 function attacks(){
     if (selectedUnit != false){
-        
+        document.getElementById("attacks").setAttribute("style","display: none");
+        document.getElementById("movements").setAttribute("style","display: none");
+
+        document.getElementById("attackUp").removeAttribute("style");
+        document.getElementById("attackDown").removeAttribute("style");
+        document.getElementById("attackLeft").removeAttribute("style");
+        document.getElementById("attackRight").removeAttribute("style");
+        document.getElementById("attackCancel").removeAttribute("style");
     }
     else{
         alert("No unit selected !");
     }
+}
+
+function cancelAttacks(){
+    document.getElementById("attackUp").setAttribute("style","display: none");
+    document.getElementById("attackDown").setAttribute("style","display: none");
+    document.getElementById("attackLeft").setAttribute("style","display: none");
+    document.getElementById("attackRight").setAttribute("style","display: none");
+    document.getElementById("attackCancel").setAttribute("style","display: none");
+
+    document.getElementById("attacks").removeAttribute("style");
+    document.getElementById("movements").removeAttribute("style");
 }
 
 // Display
