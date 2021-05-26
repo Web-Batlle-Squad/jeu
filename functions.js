@@ -19,16 +19,16 @@ class Characters{
                 document.getElementById("table").rows[this.y].cells[this.x].innerHTML = '<img alt="archer" src="images/archer.png" onclick="selectUnit('+this.name+')"/>';
                 break;
             case 3:
-                document.getElementById("table").rows[this.y].cells[this.x].innerHTML = '<img alt="spearman" src="images/spearman.png" onclick="selectUnit('+this.name+')"/>';
+                document.getElementById("table").rows[this.y].cells[this.x].innerHTML = '<img alt="knight" src="images/knight.png" onclick="selectUnit('+this.name+')"/>';
                 break;
             case 4:
-                document.getElementById("table").rows[this.y].cells[this.x].innerHTML = '<img alt="enemy Knight" src="images/enemyKnight.png"/>';
+                document.getElementById("table").rows[this.y].cells[this.x].innerHTML = '<img alt="enemy" src="images/enemyKnight.png"/>';
                 break;
             case 5:
-                document.getElementById("table").rows[this.y].cells[this.x].innerHTML = '<img alt="enemy Archer" src="images/enemyArcher.png"/>';
+                document.getElementById("table").rows[this.y].cells[this.x].innerHTML = '<img alt="enemyArcher" src="images/enemyArcher.png"/>';
                 break;
             case 6:
-                document.getElementById("table").rows[this.y].cells[this.x].innerHTML = '<img alt="enemy Spearman" src="images/enemySpearman.png"/>';
+                document.getElementById("table").rows[this.y].cells[this.x].innerHTML = '<img alt="enemy" src="images/enemySpearman.png"/>';
                 break;
             case 7:
                 document.getElementById("table").rows[this.y].cells[this.x].innerHTML = '<img alt="stone" src="images/stone.png"/>';
@@ -170,19 +170,30 @@ function down(pers){
     }
 }
 
-function winMovements(x, y){
-    play = false;
-    window.location.replace("index.html");
+var nbreEnemies = 0;
+function nbEnemies(){
+    for(var i=0;i<arrayPerso.length;i++){
+        if(arrayPerso[i].unit == 4 || arrayPerso[i].unit == 5 || arrayPerso[i].unit == 6){
+            nbreEnemies++;
+        }
+    }
 }
 
 function winAttacks(){
     // s'il n'y a plus d'ennemis la partie s'arrête
+
+    play = false;
+    alert("Victory \nYou defeated all the ennemies");
+    window.location.replace("levels.html");
+     
 }
 
 function loseStamina(){
+    console.log(nbreEnemies);
     if (stamina <= 0){
         play = false;
-        window.location.replace("index.html");
+        alert("Game Over ! \nYou don't have enough stamina :/");
+        window.location.replace("levels.html");
     }
 }
 
@@ -216,48 +227,72 @@ function cancelAttacks(){
 
 function damage(direction) { //return les pv restant du defendeur
 
-    var defender = detectEnnemy(direction, selectedUnit.x, selectedUnit.y);
+    //console.log("Entrée damage");
+    //console.log(selectedUnit.name); 
     
-    if (defender != false){
+
+    var defender = detectEnnemy(direction, selectedUnit.x, selectedUnit.y);
+    //console.log("Vie ="+defender.health);
+    //console.log("Classe ennemi = "+defender.unit);
+
+    if(defender != false){
         var ratio;
-        if ((selectedUnit.unit == 1 && defender.unit == 5) || (selectedUnit.unit == 2 && defender.unit == 6) || (selectedUnit.unit == 3 && defender.unit == 4)){
+        if((selectedUnit.unit == 1 && defender.unit == 5) || (selectedUnit.unit == 2 && defender.unit == 6) || (selectedUnit.unit == 3 && defender.unit == 4)){
+            //console.log("Entrée premier if");
             ratio = 2;
-        } else {
+        }else{
+            //console.log("Entrée deuxième if ");
             ratio = 1;
         }
 
         var damageAttack = 50*ratio;
         defender.health = defender.health - damageAttack;
 
-        if (defender.health < 0){    
-            defender.health = 0;
+        //console.log("PV restant ="+defender.health);
+
+        if(defender.health <= 0){ // /!\ defender bonne var ?
+            table[defender.x + (defender.y * X)] = 0; //dégage dans le tab de calc
+            let tmpx = defender.x;
+            let tmpy = defender.y;
+            erase(tmpx, tmpy); //dégage du tabl visuel
+            CharactersPosition[tmpy*X+tmpx] = 0;
+            nbreEnemies--;
+        }
+
+        stamina -= 4;
+        document.getElementById('stamina').innerHTML = 'Stamina : <strong>' + stamina + '</strong>';
+        
+        if(nbreEnemies != 0){
+            loseStamina();
+        }else{
+            winAttacks();
+        }
+
+        if(defender.health < 0){    
+        defender.health = 0;
         }
     }
     else {
         alert("No enemie in this direction");
     }
-
-    if (defender.health <= 0){ // /!\ defender bonne var ?
-        table[defender.x + (defender.y * X)] = 0; //dégage dans le tab de calc
-        let tmpx = defender.x;
-        let tmpy = defender.y;
-        erase(tmpx, tmpy); //dégage du tabl visuel
-    }
 }
 
 function detectEnnemy(direction, x, y){
+    //console.log("Entrée detectEnnemy");
     switch(direction){
         case "right":
-            if (CharactersPosition[y*X+(x+1)] == 4 || CharactersPosition[y*X+(x+1)] == 5 || CharactersPosition[y*X+(x+1)] == 6){
+            console.log("Entrée right");
+            if(CharactersPosition[y*X+(x+1)] == 4 || CharactersPosition[y*X+(x+1)] == 5 || CharactersPosition[y*X+(x+1)] == 6){
+                //console.log("Entrée dans la condition");
                 var i = 0;
                 var continueBoucle = true;
-                while (i<arrayPerso.length && continueBoucle == true){
+                while(i<arrayPerso.length && continueBoucle == true){
                     
-                    if (arrayPerso[i].x == x+1){
+                    if(arrayPerso[i].x == x+1){
                         var j = 0;
 
-                        while (j<arrayPerso.length && continueBoucle == true){
-                            if (arrayPerso[i].y == y){
+                        while(j<arrayPerso.length && continueBoucle == true){
+                            if(arrayPerso[i].y == y){
                                 return arrayPerso[i];   
                                 continueBoucle = false;
                             }
@@ -266,21 +301,23 @@ function detectEnnemy(direction, x, y){
                     }
                     i++;
                 }
-            } else {
+                
+            } else{
                 return false;
             }
             break;
 
         case "up":
-            if (CharactersPosition[(y-1)*X+x] == 4 || CharactersPosition[(y-1)*X+x] == 5 || CharactersPosition[(y-1)*X+x] == 6){
+            //console.log("Entrée up");
+            if(CharactersPosition[(y-1)*X+x] == 4 || CharactersPosition[(y-1)*X+x] == 5 || CharactersPosition[(y-1)*X+x] == 6){
                 var i = 0;
                 var continueBoucle = true;
-                while (i<arrayPerso.length && continueBoucle){
-                    if (arrayPerso[i].x == x){
+                while(i<arrayPerso.length && continueBoucle){
+                    if(arrayPerso[i].x == x){
                         var j = 0;
 
-                        while (j<arrayPerso.length && continueBoucle){
-                            if (arrayPerso[i].y == y-1){
+                        while(j<arrayPerso.length && continueBoucle){
+                            if(arrayPerso[i].y == y-1){
                                 return arrayPerso[i];   
                                 continueBoucle = false;
                             }
@@ -289,21 +326,22 @@ function detectEnnemy(direction, x, y){
                     }
                     i++;
                 }
-            } else {
+            } else{
                 return false;
             }
             break;
 
         case "left":
-            if (CharactersPosition[y*X+(x-1)] == 4 || CharactersPosition[y*X+(x-1)] == 5 || CharactersPosition[y*X+(x-1)] == 6){
+            //console.log("Entrée left");
+            if(CharactersPosition[y*X+(x-1)] == 4 || CharactersPosition[y*X+(x-1)] == 5 || CharactersPosition[y*X+(x-1)] == 6){
                 var i = 0;
                 var continueBoucle = true;
-                while (i<arrayPerso.length && continueBoucle){
-                    if (arrayPerso[i].x == x-1){
+                while(i<arrayPerso.length && continueBoucle){
+                    if(arrayPerso[i].x == x-1){
                         var j = 0;
 
-                        while (j<arrayPerso.length && continueBoucle){
-                            if (arrayPerso[i].y == y){
+                        while(j<arrayPerso.length && continueBoucle){
+                            if(arrayPerso[i].y == y){
                                 return arrayPerso[i];   
                                 continueBoucle = false;
                             }
@@ -312,21 +350,22 @@ function detectEnnemy(direction, x, y){
                     }
                     i++;
                 }
-            } else {
+            } else{
                 return false;
             }
             break;
 
         case "down":
-            if (CharactersPosition[(y+1)*X+x] == 4 || CharactersPosition[(y+1)*X+x] == 5 || CharactersPosition[(y+1)*X+x] == 6){
+            //console.log("Entrée down");
+            if(CharactersPosition[(y+1)*X+x] == 4 || CharactersPosition[(y+1)*X+x] == 5 || CharactersPosition[(y+1)*X+x] == 6){
                 var i = 0;
                 var continueBoucle = true;
-                while (i<arrayPerso.length && continueBoucle){
-                    if (arrayPerso[i].x == x){
+                while(i<arrayPerso.length && continueBoucle){
+                    if(arrayPerso[i].x == x){
                         var j = 0;
 
-                        while (j<arrayPerso.length && continueBoucle){
-                            if (arrayPerso[i].y == y+1){
+                        while(j<arrayPerso.length && continueBoucle){
+                            if(arrayPerso[i].y == y+1){
                                 return arrayPerso[i];   
                                 continueBoucle = false;
                             }
@@ -335,23 +374,23 @@ function detectEnnemy(direction, x, y){
                     }
                     i++;
                 }
-            } else {
+            }else{
                 return false;
             }
     }
 }
 
 function attaque(att, def, dir){
-    if (detectEnnemy(dir, att.x, att.y) == true){
+    if(detectEnnemy(dir, att.x, att.y)==true){
       def.health = damage(att, def);
     }
-    if (def.health <= 0){ // /!\ defender bonne var ?
-        table[def.x + (def.y * X)] = 0; //dégage dans le tab de calc
-        let tmpx = def.x;
-        let tmpy = def.y;
-        erase(tmpx, tmpy); //dégage dans le tabl visuel
-    }
-    return def; 
+    if(def.health <= 0){ // /!\ defender bonne var ?
+      table[def.x + (def.y * X)] = 0; //dégage dans le tab de calc
+      let tmpx = def.x;
+      let tmpy = def.y;
+  erase(tmpx, tmpy); //dégage dans le tabl visuel
+  }
+  return def; 
 }
 
 // Display
@@ -457,4 +496,5 @@ function drawLevel(){
             }
         }
     }
+    nbEnemies();
 }
