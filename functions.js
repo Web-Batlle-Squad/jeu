@@ -102,9 +102,6 @@ function right(pers){
         document.getElementById('stamina').innerHTML = 'Stamina : <strong>' + stamina + '</strong>';
         loseStamina();
     }
-    else if (CharactersPosition[(pers.y*X) + pers.x + 1] == 9){
-        // winMovements(pers.x, pers.y); disable
-    }
 }
 
 function left(pers){
@@ -122,9 +119,6 @@ function left(pers){
         stamina -= 2;
         document.getElementById('stamina').innerHTML = 'Stamina : <strong>' + stamina + '</strong>';
         loseStamina();
-    }
-    else if (CharactersPosition[(pers.y*X) + pers.x - 1] == 9){
-        // winMovements(pers.x, pers.y); disable
     }
 } 
 
@@ -144,9 +138,6 @@ function up(pers){
         document.getElementById('stamina').innerHTML = 'Stamina : <strong>' + stamina + '</strong>';
         loseStamina();
     }
-    else if (CharactersPosition[(pers.y*X) + pers.x - X] == 9){
-        // winMovements(pers.x, pers.y); disable
-    }
 } 
 
 function down(pers){
@@ -165,9 +156,6 @@ function down(pers){
         document.getElementById('stamina').innerHTML = 'Stamina : <strong>' + stamina + '</strong>';
         loseStamina();
     }
-    else if (CharactersPosition[(pers.y*X) + pers.x + X] == 9){
-        // winMovements(pers.x, pers.y); disable
-    }
 }
 
 var nbreEnemies = 0;
@@ -180,7 +168,7 @@ function nbEnemies(){
 }
 
 function winAttacks(){
-    alert("Victory \nYou defeated all the ennemies");
+    alert("Victory \nYou defeated all the ennemies !");
     window.location.replace("levels.html");
      
 }
@@ -258,7 +246,7 @@ function damage(direction){
         }
     }
     else {
-        alert("No enemie in this direction");
+        alert("There is no enemy in this direction ¯\\_(ツ)_/¯");
     }
 }
 
@@ -469,9 +457,6 @@ function drawLevel(){
                     arrayPerso.push(window['obstacle'+x]);
                     window['obstacle'+x].display();
                     x++;
-                    break;
-                case '9':
-                    document.getElementById("table").rows[i].cells[j].classList.add("finish");
                     break;
             }
         }
