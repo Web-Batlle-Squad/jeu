@@ -19,16 +19,16 @@ class Characters{
                 document.getElementById("table").rows[this.y].cells[this.x].innerHTML = '<img alt="archer" src="images/archer.png" onclick="selectUnit('+this.name+')"/>';
                 break;
             case 3:
-                document.getElementById("table").rows[this.y].cells[this.x].innerHTML = '<img alt="knight" src="images/knight.png" onclick="selectUnit('+this.name+')"/>';
+                document.getElementById("table").rows[this.y].cells[this.x].innerHTML = '<img alt="spearman" src="images/spearman.png" onclick="selectUnit('+this.name+')"/>';
                 break;
             case 4:
                 document.getElementById("table").rows[this.y].cells[this.x].innerHTML = '<img alt="enemy Knight" src="images/enemyKnight.png"/>';
                 break;
             case 5:
-                document.getElementById("table").rows[this.y].cells[this.x].innerHTML = '<img alt="enem yArcher" src="images/enemyArcher.png"/>';
+                document.getElementById("table").rows[this.y].cells[this.x].innerHTML = '<img alt="enemy Archer" src="images/enemyArcher.png"/>';
                 break;
             case 6:
-                document.getElementById("table").rows[this.y].cells[this.x].innerHTML = '<img alt="enemy Knight" src="images/enemyKnight.png"/>';
+                document.getElementById("table").rows[this.y].cells[this.x].innerHTML = '<img alt="enemy Spearman" src="images/enemySpearman.png"/>';
                 break;
             case 7:
                 document.getElementById("table").rows[this.y].cells[this.x].innerHTML = '<img alt="stone" src="images/stone.png"/>';
