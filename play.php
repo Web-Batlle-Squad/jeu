@@ -31,7 +31,6 @@
         const Y = 10;
 
         // Global variables
-        var play = true;
         var selectedUnit = false;
         var stamina = 30;
         var level = <?php echo $level;?>;
