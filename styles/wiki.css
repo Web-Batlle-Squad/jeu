@@ -1,11 +1,11 @@
 html{
-    background-color: whitesmoke;
+    background-color: rgba(205,133,63,0.14);
 }
 
 body{
     width: 70%;
     margin: auto;
-    background-color: rgba(0, 0, 0, 0.123);
+    background-color: rgba(84, 79, 61, 0.153);
 }
 
 header{
@@ -95,4 +95,11 @@ a{
 p{
     font-size: 1.7rem;
     margin-left: 80px;
+}
+
+#ecrivain{
+    float: left;
+    height: 290px;
+    width: 330px;
+    position: static;
 }

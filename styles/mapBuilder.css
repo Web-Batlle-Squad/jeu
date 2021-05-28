@@ -1,5 +1,5 @@
 html{
-    background-color: whitesmoke;
+    background-color: rgba(205,133,63,0.14);
 }
 
 body{
@@ -10,12 +10,16 @@ body{
 
 table{
     margin-top: 80px;
-    border: solid black 2px;
+    border: solid black 1px;
     border-collapse: collapse;
 }
 
 td{
     border: solid black 1px;
+}
+
+select{
+    background-color: rgba(186, 73, 48, 0.224);
 }
 
 h1{
@@ -25,13 +29,13 @@ h1{
     color: rgb(129, 129, 129);
     margin: 20px;
 }
-
-select{
-    width: 100px;
-}
   
 a{
     text-decoration: none;
+}
+
+select{
+    width: 100px;
 }
 
 input{
@@ -41,6 +45,13 @@ input{
 }
 
 .button{
-    margin-top: 80px;
+    margin: 50px 0px;
     text-align: center;
+}
+
+#soldat{
+    max-width: 300px;
+    max-height: 350px;
+    float: right;
+    background-position: bottom right;
 }

@@ -7,6 +7,7 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Texturina&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/78db0def9d.js" crossorigin="anonymous"></script>
 
     <script type="text/javascript" src="functions.js"></script>
     <link rel="stylesheet" href="styles/play.css">
@@ -30,6 +31,7 @@
         const Y = 10;
 
         // Global variables
+        var play = true;
         var selectedUnit = false;
         var stamina = 30;
         var level = <?php echo $level;?>;
@@ -65,8 +67,11 @@
 
             <button id="movements" onclick="movements()">Move</button>
             <button id="attacks" onclick="attacks()">Attack</button>
-
-            <div class="row">
+            
+            <img id="icoAtt" src="images/attackIco.png" style="display: none;" alt="ico"/>
+            <img id="icoMove" src="images/print.png" style="display: none;" alt="ico"/>
+            
+            <div class="row">    
                 <button id="left" onclick="left(selectedUnit)" style="display: none;">Left</button>
                 <div class="col">
                     <button id="up" onclick="up(selectedUnit)" style="display: none;">Up</button>
@@ -83,8 +88,10 @@
                     <button id="attackDown" onclick="damage('down')" style="display: none;">Down</button>
                 </div>
                 <button id="attackRight" onclick="damage('right')" style="display: none;">Right</button>
+                
             </div>
             <button id="attackCancel" onclick="cancelAttacks()" style="display: none;">Cancel</button>
+
         </aside>
     </main>
 </body>

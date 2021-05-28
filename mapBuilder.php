@@ -58,6 +58,7 @@
                         <option value="6">Enemy spearman</option>
                         <option value="7">Stone</option>
                         <option value="8">Fence</option>
+                        <option value="9">Finish</option>
                     </select></td>';
                 }
                 echo '</tr>';
@@ -67,5 +68,7 @@
 
         <div class="button"><input type="submit"></div>
     </form>
+
+    <img id="soldat" src="images/soldat.png" alt="soldat">
 </body>
 </html>

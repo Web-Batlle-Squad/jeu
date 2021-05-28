@@ -1,11 +1,15 @@
 html{
-    background-color: whitesmoke;
+    background-color: rgba(205,133,63,0.14);
+    background-image: url(../images/lancier.png), url(../images/archer.png);
+    background-position: top left, top right;
+    background-repeat: no-repeat, no-repeat;
+    background-size: 300px, 300px;
 }
 
 body{
     width: 70%;
     margin: auto;
-    background-color: rgba(0, 0, 0, 0.123);
+    background-color: rgba(84, 79, 61, 0.153);
 }
 
 header{
