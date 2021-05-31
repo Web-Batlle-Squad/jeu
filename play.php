@@ -10,6 +10,7 @@
     <script src="https://kit.fontawesome.com/78db0def9d.js" crossorigin="anonymous"></script>
 
     <script type="text/javascript" src="functions.js"></script>
+    <link rel="icon" sizes="16x16" href="images/logo.png">
     <link rel="stylesheet" href="styles/play.css">
 
     <title>Web Battle Squad - Play</title>
