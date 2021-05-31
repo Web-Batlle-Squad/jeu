@@ -32,7 +32,7 @@ h1{
 
 h2{
     font-size: 2rem;
-    margin-top: 50px;
+    margin-top: 80px;
 }
 
 h3{
@@ -101,9 +101,24 @@ p{
     margin-left: 80px;
 }
 
+.top{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.italic{
+    font-size: 1.7rem;
+    font-style: italic;
+    color: gray;
+}
+
 .parchment{
-    float: left;
-    height: 290px;
-    width: 330px;
-    position: static;
+    width: 200px;
+}
+
+.unit{
+    width: 50px;
+    margin-left: 30px;
 }

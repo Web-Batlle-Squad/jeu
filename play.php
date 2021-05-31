@@ -32,8 +32,15 @@
 
         // Global variables
         var selectedUnit = false;
-        var stamina = 30;
         var level = <?php echo $level;?>;
+        var stamina = 30;
+        if(level == 2){
+            stamina = 32;
+        } else if (level == 4){
+            stamina = 56;
+        } else if (level == 5){
+            stamina = 46;
+        }
 
         // Table with units position
         <?php

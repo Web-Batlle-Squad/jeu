@@ -19,7 +19,7 @@ class Characters{
                 document.getElementById("table").rows[this.y].cells[this.x].innerHTML = '<img alt="archer" src="images/archer.png" onclick="selectUnit('+this.name+')"/>';
                 break;
             case 3:
-                document.getElementById("table").rows[this.y].cells[this.x].innerHTML = '<img alt="knight" src="images/knight.png" onclick="selectUnit('+this.name+')"/>';
+                document.getElementById("table").rows[this.y].cells[this.x].innerHTML = '<img alt="knight" src="images/spearman.png" onclick="selectUnit('+this.name+')"/>';
                 break;
             case 4:
                 document.getElementById("table").rows[this.y].cells[this.x].innerHTML = '<img alt="enemy" src="images/enemyKnight.png"/>';
@@ -89,7 +89,10 @@ function cancelMovements(){
 }
 
 function right(pers){
-    if (pers.x < (X-1) && CharactersPosition[(pers.y*X) + pers.x + 1] == 0){
+    if (pers.x < (X-1) && (CharactersPosition[(pers.y*X) + pers.x + 1] == 0 || CharactersPosition[(pers.y*X) + pers.x + 1] == 8)){
+        var decrease = 2;
+        if(CharactersPosition[(pers.y*X) + pers.x + 1] == 8){ decrease = 4; }
+
         CharactersPosition[(pers.y*X) + pers.x + 1] = CharactersPosition[(pers.y*X) + pers.x];
         CharactersPosition[(pers.y*X) + pers.x] = 0;
 
@@ -100,14 +103,17 @@ function right(pers){
         document.getElementById("table").rows[pers.y].cells[pers.x].classList.add("selected");
         pers.display(pers);
 
-        stamina -= 2;
+        stamina -= decrease;
         document.getElementById('stamina').innerHTML = 'Stamina : <strong>' + stamina + '</strong>';
         loseStamina();
     }
 }
 
 function left(pers){
-    if (pers.x > 0 && CharactersPosition[(pers.y*X) + pers.x - 1] == 0){
+    if (pers.x > 0 && (CharactersPosition[(pers.y*X) + pers.x - 1] == 0 || CharactersPosition[(pers.y*X) + pers.x - 1] == 8)){
+        var decrease = 2;
+        if(CharactersPosition[(pers.y*X) + pers.x - 1] == 8){ decrease = 4; }
+
         CharactersPosition[(pers.y*X) + pers.x - 1] = CharactersPosition[(pers.y*X) + pers.x];
         CharactersPosition[(pers.y*X) + pers.x] = 0;
 
@@ -118,14 +124,17 @@ function left(pers){
         document.getElementById("table").rows[pers.y].cells[pers.x].classList.add("selected");
         pers.display(pers);
 
-        stamina -= 2;
+        stamina -= decrease;
         document.getElementById('stamina').innerHTML = 'Stamina : <strong>' + stamina + '</strong>';
         loseStamina();
     }
 } 
 
 function up(pers){
-    if (pers.y > 0 && CharactersPosition[(pers.y*X) + pers.x - X] == 0){
+    if (pers.y > 0 && (CharactersPosition[(pers.y*X) + pers.x - X] == 0 || CharactersPosition[(pers.y*X) + pers.x - X] == 8)){
+        var decrease = 2;
+        if(CharactersPosition[(pers.y*X) + pers.x - X] == 8){ decrease = 4; }
+
         CharactersPosition[(pers.y*X) + pers.x - X] = CharactersPosition[(pers.y*X) + pers.x];
         CharactersPosition[(pers.y*X) + pers.x] = 0;
 
@@ -136,14 +145,17 @@ function up(pers){
         document.getElementById("table").rows[pers.y].cells[pers.x].classList.add("selected");
         pers.display(pers);
 
-        stamina -= 2;
+        stamina -= decrease;
         document.getElementById('stamina').innerHTML = 'Stamina : <strong>' + stamina + '</strong>';
         loseStamina();
     }
 } 
 
 function down(pers){
-    if (pers.y < (Y-1) && CharactersPosition[(pers.y*X) + pers.x + X] == 0){
+    if (pers.y < (Y-1) && (CharactersPosition[(pers.y*X) + pers.x + X] == 0 || CharactersPosition[(pers.y*X) + pers.x + X] == 8)){
+        var decrease = 2;
+        if(CharactersPosition[(pers.y*X) + pers.x + X] == 8){ decrease = 4; }
+
         CharactersPosition[(pers.y*X) + pers.x + X] = CharactersPosition[(pers.y*X) + pers.x];
         CharactersPosition[(pers.y*X) + pers.x] = 0;
 
@@ -154,7 +166,7 @@ function down(pers){
         document.getElementById("table").rows[pers.y].cells[pers.x].classList.add("selected");
         pers.display(pers);
 
-        stamina -= 2;
+        stamina -= decrease;
         document.getElementById('stamina').innerHTML = 'Stamina : <strong>' + stamina + '</strong>';
         loseStamina();
     }
