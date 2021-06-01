@@ -65,6 +65,12 @@ p{
   text-decoration: underline;
 }
 
+span{
+  font-size: 1.7rem;
+  font-family: 'Lato', sans-serif;
+  margin: 50px;
+}
+
 .row{
   display: flex;
   flex-direction: row;
@@ -91,8 +97,4 @@ p{
 
 .selected{
   background-color: rgb(143, 20, 20);
-}
-
-.finish{
-  background-color: green;
 }

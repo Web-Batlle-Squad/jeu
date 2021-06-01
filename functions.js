@@ -47,6 +47,7 @@ class Characters{
 // Functions
 
 // Selection
+var chrono = false;
 selectionNber = 0;
 function selectUnit(unitName){
     if (selectionNber > 0){
@@ -56,6 +57,11 @@ function selectUnit(unitName){
     selectedUnit = unitName;
     selectionNber++;
     document.getElementById("table").rows[unitName.y].cells[unitName.x].classList.add("selected");
+
+    if(chrono == false){
+        start();
+        chrono = true;
+    }
 }
 
 // Movements
@@ -182,13 +188,15 @@ function nbEnemies(){
 }
 
 function winAttacks(){
-    alert("Victory \nYou defeated all the ennemies");
+    stop();
+    alert("Victory \nYou defeated all the ennemies\nIn only "+hours+":"+minutes+":"+seconds+", Congratulations");
     window.location.replace("levels.html");
 }
 
 function loseStamina(){
     if (stamina <= 0){
-        alert("Game Over ! \nYou don't have enough stamina :/");
+        stop();
+        alert("Game Over ! \nYou don't have enough stamina :/ \nYour chrono was at : "+hours+":"+minutes+":"+seconds);
         window.location.replace("levels.html");
     }
 }
@@ -233,6 +241,7 @@ function damage(direction){
             ratio = 2;
         }else{
             ratio = 1;
+            //document.getElementById("msgHit").innerHTML = "This enemy isn't dead yet, one more hit !";
         }
 
         defender.health = defender.health - 50*ratio;
@@ -241,6 +250,7 @@ function damage(direction){
             erase(defender.x, defender.y);
             CharactersPosition[(defender.y*X) + defender.x] = 0;
             nbreEnemies--;
+            document.getElementById("msgHit").innerHTML = "";
         }
 
         stamina -= 4;
@@ -458,4 +468,45 @@ function drawLevel(){
         }
     }
     nbEnemies();
+}
+
+var begin=0;
+var end=0;
+var hours = 0; 
+var minutes = 0;
+var seconds = 0;
+
+function start(){
+    begin = Date.now();
+}
+function stop(){
+    end = Date.now();
+    calcTime();
+}
+
+function calcTime(time){
+    var timeSpent = (end-begin)/1000;
+    console.log(timeSpent);
+      
+    hours = timeSpent / 3600;
+    timeSpent = timeSpent % 3600;
+    minutes = timeSpent / 60;
+    seconds = timeSpent %60;
+
+    hours = hours.toString().split(".")[0];
+    minutes = minutes.toString().split(".")[0];
+    seconds = seconds.toString().split(".")[0];
+
+    if(hours.length == 1){
+        hours = "0"+hours;
+    }
+    if(minutes.length == 1){
+        minutes = "0"+minutes;
+    }
+    if(seconds.length == 1){
+        seconds = "0"+seconds
+    }
+    console.log("Heure = "+hours);
+    console.log("Minutes = "+minutes);
+    console.log("seconds = "+seconds);
 }
