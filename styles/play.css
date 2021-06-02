@@ -1,9 +1,7 @@
 html{
   background-color: rgba(205,133,63,0.14);
-  background-image: url(../images/fight.png);
-  background-position: bottom right;
+  background-image: url(../images/background.jpg);
   background-repeat: no-repeat;
-  background-size: 570px;
 }
 
 body{
