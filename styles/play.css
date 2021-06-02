@@ -11,6 +11,7 @@ body{
 main{
   display: flex;
   flex-direction: row-reverse;
+  justify-content: center;
 }
 
 aside{
@@ -32,7 +33,7 @@ table{
   border-collapse: collapse;
   border: 2px solid black;
   font-size: 1rem;
-  margin: 40px auto 0px auto;
+  margin: 40px 0px 0px 0px;
 }
 
 td{
