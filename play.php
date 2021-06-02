@@ -23,7 +23,7 @@
         <?php
         $level = $_GET["level"];
         // $_GET securisation
-        if ($level < 0 || $level > 5){
+        if ($level < 0 || $level > 6){
             header('Location: index.html');
         }?>
 
@@ -43,12 +43,28 @@
             stamina = 46;
         }
 
+        var retVal = prompt("Enter difficulty : (0) Hard / (1) Medium / (2) Easy / (3) Freemode", "your chosen difficulty here");
+        if(retVal == 0 || retVal == 1 || retVal == 2){
+            stamina += retVal*2;
+        }
+        else if(retVal == 3){
+            stamina = 1000;
+        }
+        else{
+            stamina += 2;
+        }
         // Table with units position
         <?php
         if ($level == 0){
             $file = fopen('levels/customLevel.txt', 'r');
             if (!$file){ header('location: index.html'); }
             ?>CharactersPosition = [<?php echo fread($file, filesize('levels/customLevel.txt')); ?>];<?php
+            fclose($file);
+        }
+        else if($level == 6){
+            $file = fopen('levels/autoSave.txt', 'r');
+            if (!$file){ header('location: index.html');}
+            ?>CharactersPosition = [<?php echo fread($file, filesize('levels/autoSave.txt')); ?>];<?php
             fclose($file);
         }
         else {
