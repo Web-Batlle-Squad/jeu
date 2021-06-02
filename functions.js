@@ -233,6 +233,11 @@ function cancelAttacks(){
 
 function damage(direction){
 
+    if(stamina <= 2){
+        stamina -=4;
+        loseStamina();
+    } else{
+
     var defender = detectEnnemy(direction, selectedUnit.x, selectedUnit.y);
 
     if (defender != false){
@@ -246,6 +251,9 @@ function damage(direction){
 
         defender.health = defender.health - 50*ratio;
 
+        stamina -= 4;
+        document.getElementById('stamina').innerHTML = 'Stamina : <strong>' + stamina + '</strong>';
+
         if (defender.health <= 0){
             erase(defender.x, defender.y);
             CharactersPosition[(defender.y*X) + defender.x] = 0;
@@ -253,17 +261,16 @@ function damage(direction){
             document.getElementById("msgHit").innerHTML = "";
         }
 
-        stamina -= 4;
-        document.getElementById('stamina').innerHTML = 'Stamina : <strong>' + stamina + '</strong>';
-
         if (nbreEnemies != 0){
             loseStamina();
-        } else {
+        } else{
             winAttacks();
         }
+
     }
     else {
         alert("No enemie in this direction");
+    }
     }
 }
 
