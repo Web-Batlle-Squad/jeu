@@ -70,6 +70,6 @@
         <div class="button"><input type="submit"></div>
     </form>
 
-    <img id="soldat" src="images/soldat.png" alt="soldat">
+    <img alt="fight" src="images/fight2.png" class="fightImg">
 </body>
 </html>

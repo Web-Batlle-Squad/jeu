@@ -16,7 +16,7 @@ table{
 
 td{
     border: solid black 1px;
-    height: 40px;
+    height: 38px;
 }
 
 select{
@@ -51,9 +51,6 @@ input{
     text-align: center;
 }
 
-#soldat{
-    max-width: 300px;
-    max-height: 350px;
-    float: right;
-    background-position: bottom right;
+.fightImg{
+    max-width: 600px;
 }
