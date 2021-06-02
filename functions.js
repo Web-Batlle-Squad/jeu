@@ -241,7 +241,7 @@ function damage(direction){
             ratio = 2;
         }else{
             ratio = 1;
-            //document.getElementById("msgHit").innerHTML = "This enemy isn't dead yet, one more hit !";
+            document.getElementById("msgHit").innerHTML = "This enemy isn't dead yet, one more hit !";
         }
 
         defender.health = defender.health - 50*ratio;

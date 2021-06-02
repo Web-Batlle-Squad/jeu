@@ -99,6 +99,7 @@
             </div>
             <button id="attackCancel" onclick="cancelAttacks()" style="display: none;">Cancel</button>
 
+            <span id="msgHit"></span>
         </aside>
     </main>
 </body>
