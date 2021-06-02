@@ -269,7 +269,7 @@ function damage(direction){
 
     }
     else {
-        alert("No enemie in this direction");
+        alert("There is no enemy in this direction");
     }
     }
 }
