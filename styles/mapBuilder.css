@@ -1,5 +1,6 @@
 html{
-    background-color: rgba(205,133,63,0.14);
+    background-image: url(../images/background.jpg);
+    background-repeat: no-repeat;
 }
 
 body{
@@ -20,7 +21,7 @@ td{
 }
 
 select{
-    background-color: rgba(186, 73, 48, 0.224);
+    background-color: #cac9c9;
 }
 
 h1{

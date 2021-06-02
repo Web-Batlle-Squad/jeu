@@ -61,7 +61,6 @@
                         <option value="6">Enemy spearman</option>
                         <option value="7">Stone</option>
                         <option value="8">Fence</option>
-                        <option value="9">Finish</option>
                     </select></td>';
                 }
                 echo '</tr>';

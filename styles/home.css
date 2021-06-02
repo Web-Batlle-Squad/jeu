@@ -1,7 +1,7 @@
 html{
     background-color: rgba(205,133,63,0.14); 
     background-image: url(../images/knight.png), url(../images/enemyArcher.png);
-    background-position: top left, top right;
+    background-position: left 80px, right 80px;
     background-repeat: no-repeat, no-repeat;
     background-size: 300px, 300px;
 }
