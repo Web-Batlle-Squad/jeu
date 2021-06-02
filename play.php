@@ -23,8 +23,12 @@
         <?php
         $level = $_GET["level"];
         // $_GET securisation
-        if ($level < 0 || $level > 6){
+        if ($level < 0 || $level > 7){
             header('Location: index.html');
+
+        // Report php errors
+        error_reporting(E_ALL);
+        ini_set("display_errors", 1);
         }?>
 
         // Constants
