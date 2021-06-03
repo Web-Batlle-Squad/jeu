@@ -66,9 +66,9 @@
             fclose($file);
         }
         else if($level == 6){
-            $file = fopen('levels/autoSave.txt', 'r');
+            $file = fopen('autoSave.txt', 'r');
             if (!$file){ header('location: index.html');}
-            ?>CharactersPosition = [<?php echo fread($file, filesize('levels/autoSave.txt')); ?>];<?php
+            ?>CharactersPosition = [<?php echo fread($file, filesize('autoSave.txt')); ?>];<?php
             fclose($file);
         }
         else {
