@@ -109,6 +109,8 @@ function right(pers){
         document.getElementById("table").rows[pers.y].cells[pers.x].classList.add("selected");
         pers.display(pers);
 
+        var audioc = new Audio('sounds\\steps.mp3')
+        audioc.play();
         stamina -= decrease;
         document.getElementById('stamina').innerHTML = 'Stamina : <strong>' + stamina + '</strong>';
         loseStamina();
@@ -130,6 +132,8 @@ function left(pers){
         document.getElementById("table").rows[pers.y].cells[pers.x].classList.add("selected");
         pers.display(pers);
 
+        var audioc = new Audio('sounds\\steps.mp3')
+        audioc.play();
         stamina -= decrease;
         document.getElementById('stamina').innerHTML = 'Stamina : <strong>' + stamina + '</strong>';
         loseStamina();
@@ -151,6 +155,8 @@ function up(pers){
         document.getElementById("table").rows[pers.y].cells[pers.x].classList.add("selected");
         pers.display(pers);
 
+        var audioc = new Audio('sounds\\steps.mp3')
+        audioc.play();
         stamina -= decrease;
         document.getElementById('stamina').innerHTML = 'Stamina : <strong>' + stamina + '</strong>';
         loseStamina();
@@ -172,6 +178,8 @@ function down(pers){
         document.getElementById("table").rows[pers.y].cells[pers.x].classList.add("selected");
         pers.display(pers);
 
+        var audioc = new Audio('sounds\\steps.mp3')
+        audioc.play();
         stamina -= decrease;
         document.getElementById('stamina').innerHTML = 'Stamina : <strong>' + stamina + '</strong>';
         loseStamina();
@@ -249,6 +257,8 @@ function damage(direction){
             document.getElementById("msgHit").innerHTML = "This enemy isn't dead yet, one more hit !";
         }
 
+        var audiob = new Audio('sounds\\attack.mp3')
+        audiob.play();
         defender.health = defender.health - 50*ratio;
 
         stamina -= 4;
@@ -259,12 +269,15 @@ function damage(direction){
             CharactersPosition[(defender.y*X) + defender.x] = 0;
             nbreEnemies--;
             document.getElementById("msgHit").innerHTML = "";
+            var audio = new Audio('sounds\\death.mp3')
+            audio.play();
         }
 
         if (nbreEnemies != 0){
             loseStamina();
-        } else{
-            winAttacks();
+        } 
+        else{
+            setTimeout(winAttacks, 1500);
         }
 
     }
